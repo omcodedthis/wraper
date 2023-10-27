@@ -31,13 +31,29 @@ public class TextGatherer {
     /** Parses the given text (HTML doc). */
     public void parseText(String response) {
         Document document = Jsoup.parse(response);
-        Elements links = document.select("a[href]");
+        Elements titles = document.select("[title]");
+        Elements links = document.select("a[href^=\"https\"]");
 
-        for (Element link : links) {
-            String linkText = link.attr("href");
-            System.out.println(linkText);
-        }
+        // System.out.println(response); for debugging purposes.
+
+        printAllEntities(titles, "title");
+        printAllEntities(links, "href");
     }
+
+
+    /** Loops over all entities in the Elements variable & prints them to the terminal. */
+    private void printAllEntities(Elements group, String attribute) {
+        System.out.println("List of all the " + attribute + "s from this webpage:");
+
+        for (Element member : group) {
+            String text = member.attr(attribute);
+
+            System.out.println(text);
+        }
+
+        System.out.println("---------------------------------------------------------------------");
+    }
+
 
 
     /** Gets the output (a HTML doc) from by creating a HttpURLConnection & returning it as a
