@@ -31,11 +31,12 @@ public class TextGatherer {
     /** Parses the given text (HTML doc). */
     public void parseText(String response) {
         Document document = Jsoup.parse(response);
+        Elements ids = document.select("[id]");
         Elements titles = document.select("[title]");
         Elements links = document.select("a[href^=\"https\"]");
 
         // System.out.println(response); for debugging purposes.
-
+        printAllEntities(ids, "id");
         printAllEntities(titles, "title");
         printAllEntities(links, "href");
     }
@@ -46,7 +47,7 @@ public class TextGatherer {
         System.out.println("List of all the " + attribute + "s from this webpage:");
 
         for (Element member : group) {
-            String text = member.attr(attribute);
+            String text = member.attr(attribute); // .text() returns the actual text of the tag.
 
             System.out.println(text);
         }
