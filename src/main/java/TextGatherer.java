@@ -47,11 +47,10 @@ public class TextGatherer {
         System.out.println("List of all the " + attribute + "s from this webpage:");
 
         for (Element member : group) {
-            String text = member.attr(attribute); // .text() returns the actual text of the tag.
+            String text = member.attr(attribute); // .text() returns the text within the tag.
 
             System.out.println(text);
         }
-
         System.out.println("---------------------------------------------------------------------");
     }
 
