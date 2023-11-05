@@ -35,7 +35,7 @@ public class TextGatherer {
         Elements titles = document.select("[title]");
         Elements links = document.select("a[href^=\"https\"]");
 
-        // System.out.println(response); for debugging purposes.
+        // System.out.println(response); to view the response string for debugging purposes.
         printAllEntities(ids, "id");
         printAllEntities(titles, "title");
         printAllEntities(links, "href");
