@@ -34,13 +34,15 @@ public class TextGatherer {
         Elements ids = document.select("[id]");
         Elements titles = document.select("[title]");
         Elements links = document.select("a[href^=\"https\"]");
+        Elements divtexts = document.select("div");
         Elements ptexts = document.select("p");
         Elements atexts = document.select("a");
 
 
         // System.out.println(response); to view the response string for debugging purposes.
-        printAllEntities(titles, "title");
-        printAllEntities(links, "href");
+        // printAllEntities(titles, "title");
+        // printAllEntities(links, "href");
+        printText(divtexts, "div");
         printText(ptexts, "p");
         printText(atexts, "a");
         System.out.println("A PageData.txt file has been created in your current working directory which contains the webpage data.");
