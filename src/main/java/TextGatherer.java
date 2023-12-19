@@ -10,69 +10,47 @@ import java.net.URL;
 /** This class handles the gathering & parsing of text from a given URL. */
 public class TextGatherer {
     private String url;
-    private PrintWriter textFile;
+    private String data;
 
     /** Constructor for this class, setting the instance variable & creates the .txt file where all
      * the data will be printed into. */
-    public TextGatherer(String u) throws FileNotFoundException {
+    public TextGatherer(String u) {
         url = u;
-        textFile = new PrintWriter("PageData.txt");
     }
 
 
-    /** Gathers text from the URL. */
-    public String gatherText() throws IOException {
+    /** Gathers & parses from the URL. */
+    public String gatherAndParseText() throws IOException {
         URL urlObject = new URL(url);
         BufferedReader output = getHTTPRequestOutput(urlObject);
-        return convertToString(output);
+        String outputText = convertToString(output);
+        return parseText(outputText);
     }
 
 
     /** Parses the given text (HTML doc). */
-    public void parseText(String response) {
+    private String parseText(String response) {
         Document document = Jsoup.parse(response);
-        Elements ids = document.select("[id]");
-        Elements titles = document.select("[title]");
-        Elements links = document.select("a[href^=\"https\"]");
-        Elements divtexts = document.select("div");
         Elements ptexts = document.select("p");
-        Elements atexts = document.select("a");
+        Elements spantexts = document.select("span");
 
-
-        // System.out.println(response); to view the response string for debugging purposes.
-        // printAllEntities(titles, "title");
-        // printAllEntities(links, "href");
-        printText(divtexts, "div");
-        printText(ptexts, "p");
-        printText(atexts, "a");
-        System.out.println("A PageData.txt file has been created in your current working directory which contains the webpage data.");
+        addText(ptexts);
+        addText(spantexts);
+        return data;
     }
 
 
-    /** Loops over all entities in the Elements variable & prints them to the terminal. */
-    private void printAllEntities(Elements group, String attribute) {
-        textFile.println("+--------------------------------------------------------------------------------------------------+");
-        textFile.println("List of all the " + attribute + "s from this webpage:");
-        textFile.println("+--------------------------------------------------------------------------------------------------+");
-
-        for (Element member : group) {
-            String text = member.attr(attribute); // .text() returns the text within the tag.
-
-            textFile.println(text);
-        }
-    }
-
-
-    /** Loops over all entities in the Elements variable & prints its text to the terminal. */
-    private void printText(Elements group, String attribute) {
-        textFile.println("+--------------------------------------------------------------------------------------------------+");
-        textFile.println("List of all the " + attribute + "s from this webpage:");
-        textFile.println("+--------------------------------------------------------------------------------------------------+");
-
+    /** Loops over all entities in the Elements variable & add its text to data. */
+    private void addText(Elements group) {
         for (Element member : group) {
             String text = member.text(); // .text() returns the text within the tag.
 
-            textFile.println(text);
+            data += text;
+
+            if (data.length() > 2500) {
+                //System.out.println("Limit reached!");
+                return;
+            }
         }
 
     }
