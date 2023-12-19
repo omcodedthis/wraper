@@ -31,7 +31,7 @@ public class Main {
         String data = tg.gatherAndParseText();
 
         // sends a prompt to Ollama's orca-mini model & prints the summarized response.
-        OllamaResult answer = ollamaAPI.ask(OllamaModelType.ORCAMINI, "Summarize this text in less than 50 words. Include the overall sentiment (positive, neutral or negative) of the text at the end of your response. Here is the text: " + data);
+        OllamaResult answer = ollamaAPI.ask(OllamaModelType.ORCAMINI, "Summarize this text extracted from a webpage in 100 words. Here is the text: " + data);
         String cleanResponse = ">" + " Webpage Summary: \n" + answer.getResponse().replace("null", "");
         System.out.println(cleanResponse);
     }
