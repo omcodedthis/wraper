@@ -9,7 +9,7 @@ Above is an example using [GitHub's Wikipedia page](https://en.wikipedia.org/wik
 ## How does it work?
 ![wraperarch](https://github.com/omcodedthis/wraper/assets/119602009/85bd666a-7541-4fc3-a048-014201ff3507)
 
-Ollama's Orca Mini does not have the ability to make web searches as it runs locally, as such, `TextGatherer` creates a HTTP request extracts the text of the webpage. With the use of Generative AI, webpages with large amounts of text can be easily summarized into less than 100 words, allowing users to analyse multiple websites much more swiftly.
+Ollama's Orca Mini does not have the ability to make web searches as it runs locally, as such, `TextGatherer` creates a HTTP request & extracts the text of the webpage. With the use of Generative AI, webpages with large amounts of text can be easily summarized into less than 100 words, allowing users to analyse multiple websites much more swiftly.
 
 Given enough computation power, multiple websites can be summarized simultaneously. A possible application would be for the purposes of learning content that is naturally verbose compared to paying for a subscription to utilise other forms of Generative AI technologies.
 
