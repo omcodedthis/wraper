@@ -23,4 +23,4 @@ Given enough computation power, multiple websites can be summarized simultaneous
   ```
   docker exec -it ollama ollama run orca-mini
   ```
-Once the inital set-up is completed, **Docker & the Ollama container will start automatically when wraper is run**. Do note that it may take some time to receive a response, this is entirely dependent on the webpage & your system specification. You can also utilise a dedicated GPU to run Ollama's models by setting up the [NVIDIA Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html#installation) for Linux or systems with WSL2.
+Once the inital set-up is completed, **Docker & the Ollama container will start automatically when wraper is run**. Do note that it may take some time to receive a response, this is entirely dependent on the webpage & your system specifications. You can also utilise a dedicated GPU to run Ollama's models by setting up the [NVIDIA Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html#installation) for Linux or systems with WSL2.
